@@ -1,21 +1,22 @@
 package com.github.ignasbudreika.util;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 
-public class FileReadUtil {
+public class FileUtil {
 
-    public BufferedReader getReader(String path) throws IOException {
-        ClassLoader classLoader = getClass().getClassLoader();
-        InputStream inputStream = classLoader.getResourceAsStream(path);
-        if (inputStream == null) {
-            throw new IOException("transactions file missing");
-        }
-        InputStreamReader streamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+    public BufferedReader getReader(String path) throws FileNotFoundException {
+        return new BufferedReader(new FileReader(path));
+    }
 
-        return new BufferedReader(streamReader);
+    public void writeToFile(String content, String path) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+        writer.write(content);
+
+        writer.close();
     }
 }
