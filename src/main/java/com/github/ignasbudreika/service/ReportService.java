@@ -3,6 +3,8 @@ package com.github.ignasbudreika.service;
 import com.github.ignasbudreika.model.Report;
 import com.github.ignasbudreika.model.Transaction;
 import com.github.ignasbudreika.repository.ReportRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -14,6 +16,8 @@ import java.util.Map;
 import java.util.UUID;
 
 public class ReportService {
+
+    protected static final Logger logger = LogManager.getLogger();
 
     private final ReportRepository reportRepository;
 
@@ -64,7 +68,7 @@ public class ReportService {
         try {
             reportRepository.save(report);
         } catch (IOException e) {
-            System.out.printf("ERROR Unable to save %s report: %s\n", report.id(), e.getMessage());
+            logger.error(String.format("Unable to save %s report", report.id()), e.getMessage());
         }
     }
 

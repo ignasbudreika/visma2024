@@ -2,6 +2,8 @@ package com.github.ignasbudreika.repository;
 
 import com.github.ignasbudreika.model.Transaction;
 import com.github.ignasbudreika.util.FileUtil;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionRepository {
+
+    protected static final Logger logger = LogManager.getLogger();
 
     private final FileUtil fileUtil;
 
@@ -29,13 +33,13 @@ public class TransactionRepository {
                     Transaction transaction = new Transaction(line.split(","));
                     txs.add(transaction);
                 } catch (ParseException e) {
-                    System.out.printf("WARN Failed to parse transaction: %s\n", e.getMessage());
+                    logger.warn("Failed to parse transaction", e);
                 }
             }
 
             return txs;
         } catch (IOException e) {
-            System.out.printf("ERROR Unable to read transactions: %s\n", e.getMessage());
+            logger.error("Unable to read transactions", e);
 
             return new ArrayList<>();
         }

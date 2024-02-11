@@ -3,10 +3,14 @@ package com.github.ignasbudreika.service;
 import com.github.ignasbudreika.model.Report;
 import com.github.ignasbudreika.model.Transaction;
 import com.github.ignasbudreika.repository.TransactionRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
 public class TransactionService {
+
+    protected static final Logger logger = LogManager.getLogger();
 
     private final TransactionRepository transactionRepository;
 
@@ -20,7 +24,7 @@ public class TransactionService {
     public void processTransactions(String transactionsFile) {
         List<Transaction> transactions = transactionRepository.loadTransactions(transactionsFile);
         if (transactions.isEmpty()) {
-            System.out.println("INFO No transactions found, skipping report calculation");
+            logger.info("No transactions found, skipping report calculation");
             return;
         }
 
