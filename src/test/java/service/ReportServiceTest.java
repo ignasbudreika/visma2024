@@ -2,7 +2,7 @@ package service;
 
 import com.github.ignasbudreika.model.Report;
 import com.github.ignasbudreika.model.Transaction;
-import com.github.ignasbudreika.repository.ReportRepository;
+import com.github.ignasbudreika.repository.ReportRepositoryFileImpl;
 import com.github.ignasbudreika.service.ReportService;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -24,7 +24,7 @@ class ReportServiceTest {
     private static final LocalDate first = LocalDate.of(1970, 1, 1);
     private static final LocalDate second = LocalDate.of(1970, 1, 2);
 
-    private final ReportRepository reportRepository = mock(ReportRepository.class);
+    private final ReportRepositoryFileImpl reportRepository = mock(ReportRepositoryFileImpl.class);
 
     private final ReportService target = new ReportService(reportRepository);
 

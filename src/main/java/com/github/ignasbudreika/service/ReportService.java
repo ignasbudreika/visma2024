@@ -6,7 +6,6 @@ import com.github.ignasbudreika.repository.ReportRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
@@ -65,11 +64,7 @@ public class ReportService {
     }
 
     public void saveReport(Report report){
-        try {
-            reportRepository.save(report);
-        } catch (IOException e) {
-            logger.error(String.format("Unable to save %s report", report.id()), e.getMessage());
-        }
+        reportRepository.save(report);
     }
 
     private Integer evaluateFrequency(Transaction transaction,

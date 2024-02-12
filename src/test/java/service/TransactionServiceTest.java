@@ -2,7 +2,7 @@ package service;
 
 import com.github.ignasbudreika.model.Report;
 import com.github.ignasbudreika.model.Transaction;
-import com.github.ignasbudreika.repository.TransactionRepository;
+import com.github.ignasbudreika.repository.TransactionRepositoryFileImpl;
 import com.github.ignasbudreika.service.ReportService;
 import com.github.ignasbudreika.service.TransactionService;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,7 @@ class TransactionServiceTest {
 
     private static final String FILE = "file.csv";
 
-    private final TransactionRepository transactionRepository = mock(TransactionRepository.class);
+    private final TransactionRepositoryFileImpl transactionRepository = mock(TransactionRepositoryFileImpl.class);
 
     private final ReportService reportService = mock(ReportService.class);
 
